@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>R @ MMC</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R @ MMC
+## Costas T Lambrew Research Retreat
+### May 7, 2019
+
+---
+
+class: center
+background-image: url("images/animated.gif")
+#  Visualize your data
+---
+class: center
+
+# Create maps!
+![](images/animated_map.gif)
+---
+class: center
+background-image: url("images/islr_graph.jpg")
+
+# Statistics and machine learning
+
+.left[![](images/islr.jpeg)]
+&lt;!-- .right[![](images/islr_graph.jpg)] --&gt;
+
+---
+
+# Programmatically generate tables
+
+
+
+```r
+tableone::CreateTableOne(
+  vars =  c("time","status","age","sex","trig","stage"), 
+  strata = "trt", data = survival::pbc, 
+  factorVars =  c("status","trt","edema","stage"))
+```
+
+```
+##                   Stratified by trt
+##                    1                 2                 p      test
+##   n                    158               154                      
+##   time (mean (SD)) 2015.62 (1094.12) 1996.86 (1155.93)  0.883     
+##   status (%)                                            0.894     
+##      0                  83 (52.5)         85 (55.2)               
+##      1                  10 ( 6.3)          9 ( 5.8)               
+##      2                  65 (41.1)         60 (39.0)               
+##   age (mean (SD))    51.42 (11.01)     48.58 (9.96)     0.018     
+##   sex = f (%)          137 (86.7)        139 (90.3)     0.421     
+##   trig (mean (SD))  124.14 (71.54)    125.25 (58.52)    0.886     
+##   stage (%)                                             0.201     
+##      1                  12 ( 7.6)          4 ( 2.6)               
+##      2                  35 (22.2)         32 (20.8)               
+##      3                  56 (35.4)         64 (41.6)               
+##      4                  55 (34.8)         54 (35.1)
+```
+
+
+---
+class: center, middle
+# **MMC R server** 
+## Access your work from any MaineHealth computer with a web browser
+**[https://vmrstudiowebap](https://vmrstudiowebap)**
+
+---
+class: center, middle
+# **MMC R server** 
+## Install packages with ease
+
+
+
+```r
+install.packages("tidyverse")
+```
+
+
+---
+class: center, middle
+# **MMC R server** 
+## Use Python
+
+```python
+import pandas as pd
+my_series = pd.Series([2, 4, 6, 8, 10])
+print(my_series.describe())
+```
+
+```
+## count     5.000000
+## mean      6.000000
+## std       3.162278
+## min       2.000000
+## 25%       4.000000
+## 50%       6.000000
+## 75%       8.000000
+## max      10.000000
+## dtype: float64
+```
+---
+class: center, middle
+# **MMC R server** 
+## Connect to databases
+
+```r
+con &lt;- dbConnect(odbc(), Driver = "{ODBC Driver 17 for SQL Server}", 
+    Server = "localhost", Database = "testdb", UID = "SA", PWD = rstudioapi::askForPassword("Database password"), 
+    Port = 1433)
+```
+
+
+
+---
+# **MMC R user group**
+- Get help from peers
+- Meets first Tuesday of every month at CORE
+- Upcoming topics
+  * Programmatic tables
+  * Baysian multilevel modeling
+  * Causal inference and Structural Equation Modeling
+  * Big data
+---
+class: center
+
+# Data Carpentry Workshop at CORE
+
+&lt;iframe width="700" height="450" src="https://www.youtube.com/embed/yK2vexb2QEI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+class: center
+background-image: url("images/publish.gif")
+
+# **RStudio Connect:** Share your analysis
+Publish your analysis and share internally via a simple url
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+setInterval(function() {slideshow.gotoNextSlide();}, 6000);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

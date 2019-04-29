@@ -1,0 +1,117 @@
+---
+title: "R @ MMC"
+subtitle: "Costas T Lambrew Research Retreat"
+date: "May 1, 2019"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      autoplay: 6000
+---
+class: center
+background-image: url("images/animated.gif")
+#  Visualize your data
+---
+class: center
+
+# Create maps!
+![https://geocompr.robinlovelace.net/adv-map.html](images/animated_map.gif)
+---
+class: center
+background-image: url("images/islr_graph.jpg")
+
+# Statistics and machine learning
+
+.left[![](images/islr.jpeg)]
+<!-- .right[![](images/islr_graph.jpg)] -->
+
+---
+
+# Programmatically generate tables
+
+
+```{r}
+tableone::CreateTableOne(
+  vars =  c("time","status","age","sex","trig","stage"), 
+  strata = "trt", data = survival::pbc, 
+  factorVars =  c("status","trt","edema","stage"))
+```
+
+
+---
+class: center, middle
+# **MMC R server** 
+## Access your work from any MaineHealth computer with a web browser
+**[https://vmrstudiowebap](https://vmrstudiowebap)**
+
+---
+class: center, middle
+# **MMC R server** 
+## Install packages with ease
+
+
+```{r eval=FALSE, tidy=FALSE}
+install.packages("tidyverse")
+```
+
+
+---
+class: center, middle
+# **MMC R server** 
+## Use Python
+```{python}
+import pandas as pd
+my_series = pd.Series([2, 4, 6, 8, 10])
+print(my_series.describe())
+```
+---
+class: center, middle
+# **MMC R server** 
+## Connect to databases
+```{r, eval=FALSE}
+con <- dbConnect(odbc(), Driver = "{ODBC Driver 17 for SQL Server}", 
+    Server = "localhost", Database = "testdb", UID = "SA", PWD = rstudioapi::askForPassword("Database password"), 
+    Port = 1433)
+```
+
+
+
+---
+# **MMC R user group**
+- Get help from peers
+- Meets first Tuesday of every month at CORE
+- Upcoming topics
+  * Programmatic tables
+  * Baysian multilevel modeling
+  * Causal inference and Structural Equation Modeling
+  * Big data
+---
+class: center
+
+# Data Carpentry Workshop at CORE
+
+<iframe width="700" height="450" src="https://www.youtube.com/embed/yK2vexb2QEI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+class: center
+background-image: url("images/publish.gif")
+
+# **RStudio Connect:** Share your analysis
+Publish your analysis and share internally via a simple url
+
+---
+<meta http-equiv="refresh" content="0; URL='http://google.com'" />
+---
+
+
+
+
+
+
+
+
+
+
