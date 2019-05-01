@@ -15,7 +15,9 @@ output:
       autoPlayMedia: TRUE
 ---
 ##  Visualize your data
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(gtsummary)
+library(dplyr)
 htmltools::img(src = knitr::image_uri("images/animated.gif"), 
                alt = 'plots', 
                style = 'background:none; border:none; box-shadow:none; position:relative;')
@@ -40,11 +42,13 @@ htmltools::img(src = knitr::image_uri("images/islr_graph.jpg"),
 
 ## Programmatically generate tables
 ```{r}
-tableone::CreateTableOne(
-  vars =  c("time","status","age","sex","trig","stage"), 
-  strata = "trt", data = survival::pbc, 
-  factorVars =  c("status","trt","edema","stage"))
+tbl_summary(trial[c("trt", "age", "grade", "response")], 
+            by = "trt") %>%
+  add_comparison() 
 ```
+
+
+
 
 
 ## **MMC R server** 
@@ -85,13 +89,13 @@ con <- dbConnect(odbc(), Driver = "{ODBC Driver 17 for SQL Server}",
 - Get help from peers
 - Meets first Tuesday of every month at CORE
 - Upcoming topics
-  * Programmatic tables
-  * Baysian multilevel modeling
-  * Causal inference and Structural Equation Modeling
-  * Big data
+    + Programmatic tables (**Next Tuesday**)
+    + Baysian multilevel modeling
+    + Causal inference and Structural Equation Modeling
+    + Big data
 
 ## Data Carpentry Workshop at Core
-```{r echo = FALSE}
+```{r echo = FALSE, message=FALSE}
 library("htmltools")
 library("vembedr")
 embed_url("https://youtu.be/yK2vexb2QEI")
